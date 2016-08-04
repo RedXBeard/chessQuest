@@ -5,9 +5,9 @@ def left_right_cross(step=0):
         :param board: board class object
         :param pointed_index: current position of piece
         :param step: one of more cell movement
+        :return: Boolean acceptable or not
         """
-        to_left_top = []
-        to_left_bottom = []
+        indexes = []
         pos_x = pointed_index % board.len_x
         pos_y = pointed_index / board.len_x
 
@@ -16,7 +16,7 @@ def left_right_cross(step=0):
             index = pointed_index - counter * (board.len_x + 1)
             if index < 0 or index / board.len_x > pos_y or index % board.len_x > pos_x:
                 break
-            to_left_top.append(index)
+            indexes.append(index)
             counter += 1
             if step:
                 break
@@ -26,13 +26,12 @@ def left_right_cross(step=0):
             index = pointed_index + counter * (board.len_x + 1)
             if index >= board.len_x * board.len_y or index / board.len_x < pos_y or index % board.len_x < pos_x:
                 break
-            to_left_bottom.append(index)
+            indexes.append(index)
             counter += 1
             if step:
                 break
 
-        board.sign_indexes(to_left_bottom)
-        board.sign_indexes(to_left_top)
+        return board.sign_indexes(indexes)
 
     return inner
 
@@ -44,9 +43,9 @@ def right_left_cross(step=0):
         :param board: board class object
         :param pointed_index: current position of piece
         :param step: one of more cell movement
+        :return: Boolean acceptable or not
         """
-        to_right_top = []
-        to_right_bottom = []
+        indexes = []
         pos_x = pointed_index % board.len_x
         pos_y = pointed_index / board.len_x
 
@@ -55,7 +54,7 @@ def right_left_cross(step=0):
             index = pointed_index - counter * (board.len_x - 1)
             if index < 0 or index / board.len_x > pos_y or index % board.len_x < pos_x:
                 break
-            to_right_top.append(index)
+            indexes.append(index)
             counter += 1
             if step:
                 break
@@ -65,13 +64,12 @@ def right_left_cross(step=0):
             index = pointed_index + counter * (board.len_x - 1)
             if index >= board.len_x * board.len_y or index / board.len_x < pos_y or index % board.len_x > pos_x:
                 break
-            to_right_bottom.append(index)
+            indexes.append(index)
             counter += 1
             if step:
                 break
 
-        board.sign_indexes(to_right_bottom)
-        board.sign_indexes(to_right_top)
+        return board.sign_indexes(indexes)
 
     return inner
 
@@ -83,6 +81,7 @@ def horizontal(step=0):
         :param board: board class object
         :param pointed_index: current position of piece
         :param step: one of more cell movement
+        :return: Boolean acceptable or not
         """
         indexes = []
         index = pointed_index
@@ -103,7 +102,7 @@ def horizontal(step=0):
             if step:
                 break
 
-        board.sign_indexes(indexes)
+        return board.sign_indexes(indexes)
 
     return inner
 
@@ -115,6 +114,7 @@ def vertical(step=0):
         :param board: board class object
         :param pointed_index: current position of piece
         :param step: one of more cell movement
+        :return: Boolean acceptable or not
         """
         indexes = []
         max_index = board.len_x * board.len_y - 1
@@ -128,6 +128,7 @@ def vertical(step=0):
             if step:
                 break
 
+        index = pointed_index
         while True:
             index -= board.len_x
             if index < 0:
@@ -137,6 +138,43 @@ def vertical(step=0):
             if step:
                 break
 
-        board.sign_indexes(indexes)
+        return board.sign_indexes(indexes)
 
     return inner
+
+
+def knight_move(board, pointed_index):
+
+    indexes = []
+
+    pos_y = pointed_index / board.len_x
+
+    top_left_index = pointed_index - 1 - board.len_x * 2
+    top_right_index = pointed_index + 1 - board.len_x * 2
+    bottom_left_index = pointed_index - 1 + board.len_x * 2
+    bottom_right_index = pointed_index + 1 + board.len_x * 2
+
+    left_top_index = pointed_index - 2 - board.len_x
+    left_bottom_index = pointed_index - 2 + board.len_x
+    right_top_index = pointed_index + 2 - board.len_x
+    right_bottom_index = pointed_index + 2 + board.len_x
+
+    if top_left_index >= 0 and pos_y - top_left_index / board.len_x == 2:
+        indexes.append(top_left_index)
+    if top_right_index >= 0 and pos_y - top_right_index / board.len_x == 2:
+        indexes.append(top_right_index)
+    if bottom_left_index < board.len_x * board.len_y and bottom_left_index / board.len_x - pos_y == 2:
+        indexes.append(bottom_left_index)
+    if bottom_right_index < board.len_x * board.len_y and bottom_right_index / board.len_x - pos_y == 2:
+        indexes.append(bottom_right_index)
+
+    if left_top_index >= 0 and pos_y - left_top_index / board.len_x == 1:
+        indexes.append(left_top_index)
+    if left_bottom_index < board.len_x * board.len_y and left_bottom_index / board.len_x - pos_y == 1:
+        indexes.append(left_bottom_index)
+    if right_top_index >= 0 and pos_y - right_top_index / board.len_x == 1:
+        indexes.append(right_top_index)
+    if right_bottom_index < board.len_x * board.len_y and right_bottom_index / board.len_x - pos_y == 1:
+        indexes.append(right_bottom_index)
+
+    return board.sign_indexes(indexes)

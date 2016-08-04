@@ -35,4 +35,5 @@ if __name__ == '__main__':
     for piece in PIECES_ORDER:
         pieces.extend([piece] * pieces_counts[piece])
 
-    print pieces
+    board.place_them_all(pieces=pieces)
+    board.show_combinations()
