@@ -25,8 +25,6 @@ Type followings;
 
     from chessQuest import PIECES, PIECES_ORDER, KNIGHT, KING, QUEEN, ROOK, BISHOP
     from chessQuest.board import Board
-    from chessQuest.movements import (left_right_cross, right_left_cross, 
-                                      horizontal, vertical, knight_move)
                                       
     board = Board(7, 7)
     pieces_counts = {'K': 2, 'Q': 2, 'B': 2, 'N': 1}

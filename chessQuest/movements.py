@@ -1,10 +1,13 @@
 def left_right_cross(step=0):
+    """
+    :param step: one of more cell movement
+    :return: function
+    """
     def inner(board, pointed_index):
         """
         To sign forbidden cells for positioned piece handler from left to right cross.
-        :param board: board class object
+        :param board: Board class object
         :param pointed_index: current position of piece
-        :param step: one of more cell movement
         :return: Boolean acceptable or not
         """
         indexes = []
@@ -37,12 +40,15 @@ def left_right_cross(step=0):
 
 
 def right_left_cross(step=0):
+    """
+    :param step: one of more cell movement
+    :return: function
+    """
     def inner(board, pointed_index):
         """
         To sign forbidden cells for positioned piece handler from right to left cross.
-        :param board: board class object
+        :param board: Board class object
         :param pointed_index: current position of piece
-        :param step: one of more cell movement
         :return: Boolean acceptable or not
         """
         indexes = []
@@ -75,12 +81,15 @@ def right_left_cross(step=0):
 
 
 def horizontal(step=0):
+    """
+    :param step: one of more cell movement
+    :return: function
+    """
     def inner(board, pointed_index):
         """
         To sign forbidden cells for positioned piece handler horizontally.
-        :param board: board class object
+        :param board: Board class object
         :param pointed_index: current position of piece
-        :param step: one of more cell movement
         :return: Boolean acceptable or not
         """
         indexes = []
@@ -108,12 +117,15 @@ def horizontal(step=0):
 
 
 def vertical(step=0):
+    """
+    :param step: one of more cell movement
+    :return: function
+    """
     def inner(board, pointed_index):
         """
         To sign forbidden cells for positioned piece handler vertically.
-        :param board: board class object
+        :param board: Board class object
         :param pointed_index: current position of piece
-        :param step: one of more cell movement
         :return: Boolean acceptable or not
         """
         indexes = []
@@ -144,6 +156,12 @@ def vertical(step=0):
 
 
 def knight_move(board, pointed_index):
+    """
+    Detect all movement positions and their availability.
+    :param board: Board class object
+    :param pointed_index: current position of piece
+    :return: Boolean acceptable or not
+    """
 
     indexes = []
 

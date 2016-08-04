@@ -11,6 +11,7 @@ KNIGHT = 'N'
 
 PIECES_ORDER = [QUEEN, KING, ROOK, BISHOP, KNIGHT]
 
+# Do not need an actual class for pieces.
 PIECES = {
     KING: {
         'movements': [left_right_cross(1), right_left_cross(1), horizontal(1), vertical(1)],
