@@ -1,7 +1,7 @@
 def left_right_cross(step=0):
     """
     :param step: one of more cell movement
-    :return: function
+    :return: list of indexes
     """
     def inner(board, pointed_index):
         """
@@ -34,7 +34,7 @@ def left_right_cross(step=0):
             if step:
                 break
 
-        return board.sign_indexes(indexes)
+        return indexes
 
     return inner
 
@@ -42,7 +42,7 @@ def left_right_cross(step=0):
 def right_left_cross(step=0):
     """
     :param step: one of more cell movement
-    :return: function
+    :return: list of indexes
     """
     def inner(board, pointed_index):
         """
@@ -75,7 +75,7 @@ def right_left_cross(step=0):
             if step:
                 break
 
-        return board.sign_indexes(indexes)
+        return indexes
 
     return inner
 
@@ -83,7 +83,7 @@ def right_left_cross(step=0):
 def horizontal(step=0):
     """
     :param step: one of more cell movement
-    :return: function
+    :return: list of indexes
     """
     def inner(board, pointed_index):
         """
@@ -111,7 +111,7 @@ def horizontal(step=0):
             if step:
                 break
 
-        return board.sign_indexes(indexes)
+        return indexes
 
     return inner
 
@@ -119,7 +119,7 @@ def horizontal(step=0):
 def vertical(step=0):
     """
     :param step: one of more cell movement
-    :return: function
+    :return: list of indexes
     """
     def inner(board, pointed_index):
         """
@@ -150,7 +150,7 @@ def vertical(step=0):
             if step:
                 break
 
-        return board.sign_indexes(indexes)
+        return indexes
 
     return inner
 
@@ -160,7 +160,7 @@ def knight_move(board, pointed_index):
     Detect all movement positions and their availability.
     :param board: Board class object
     :param pointed_index: current position of piece
-    :return: Boolean acceptable or not
+    :return: list of indexes
     """
 
     indexes = []
@@ -195,4 +195,4 @@ def knight_move(board, pointed_index):
     if right_bottom_index < board.len_x * board.len_y and right_bottom_index / board.len_x - pos_y == 1:
         indexes.append(right_bottom_index)
 
-    return board.sign_indexes(indexes)
+    return indexes

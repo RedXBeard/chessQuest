@@ -1,3 +1,4 @@
+from chessQuest.utils import cached
 from . import FORBIDDEN, KING, QUEEN, BISHOP, ROOK, KNIGHT, FREE, PIECES
 
 
@@ -27,6 +28,21 @@ class Board:
                 return False
             self.board[index] = cell_type
         return True
+
+    @cached
+    def piece_movements(self, piece, pointed_index):
+        """
+        Working with collection of movement methods of each piece,
+        grouping them all and returns it.
+        By the cached decorator help, indexes do not collected with movements.
+        :param piece: one of king, queen, rook, knight, bishop.
+        :param pointed_index: index of board which was tried to the piece.
+        :return: list of movable indexes of the piece.
+        """
+        indexes = []
+        for func in PIECES[piece]['movements']:
+            indexes.extend(func(self, pointed_index))
+        return indexes
 
     def print_board(self):
         """
@@ -80,15 +96,16 @@ class Board:
         for index in range(len(self.board)):
             self.reset()
             self.board[index] = first_piece
-            self.place_them(["{}_{}".format(first_piece, index)], rest_pieces)
+            self.place_them(["{}_{}".format(first_piece, index)], rest_pieces, len(pieces))
 
-    def place_them(self, combination=[], pieces=[]):
+    def place_them(self, combination=[], pieces=[], total_count=0):
         """
         Found all suitable positions for each pieces.
         :param combination: list of string of piece and index of position which is found as suitable.
         :param pieces: by the recursion list of given chess pieces.
+        :param total_count: total number of pieces at the beginning
         """
-        if not pieces:
+        if not pieces and len(combination) == total_count:
             self.combinations.add(','.join(sorted(combination)))
             return
 
@@ -97,14 +114,14 @@ class Board:
         self.reset()
         place_them = map(lambda x: x.split('_'), combination)
         for piece, piece_index in place_them:
+            indexes = self.piece_movements(piece, int(piece_index))
+            self.sign_indexes(indexes)
             self.board[int(piece_index)] = piece
-            for func in PIECES[piece]['movements']:
-                func(self, int(piece_index))
 
         for index in self.free_cells():
-            result = True
-            for func in PIECES[first_piece]['movements']:
-                result = result and func(self, int(index))
+            indexes = self.piece_movements(first_piece, index)
+            result = self.sign_indexes(indexes)
             if result:
                 self.place_them(
-                    combination=combination + ["{}_{}".format(first_piece, index)], pieces=rest_pieces)
+                    combination=combination + ["{}_{}".format(first_piece, index)],
+                    pieces=rest_pieces, total_count=total_count)

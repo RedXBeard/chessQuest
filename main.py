@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from chessQuest import PIECES_ORDER, KNIGHT, KING, QUEEN, ROOK, BISHOP
 from chessQuest.board import Board
 
@@ -35,5 +37,7 @@ if __name__ == '__main__':
     for piece in PIECES_ORDER:
         pieces.extend([piece] * pieces_counts[piece])
 
+    t1 = datetime.now()
     board.place_them_all(pieces=pieces)
-    board.show_combinations()
+    print datetime.now() - t1
+    board.show_combinations(limit=0)
