@@ -1,6 +1,10 @@
 # Chess Quest
 Find all unique configurations of a set of normal chess pieces on a chess board with dimensions M×N where none of the pieces is in a position to take any of the others. Assume the colour of the piece does not matter, and that there are no pawns among the pieces.
 
+## Info
+
+With caching spending time is decreased almost ```40%```
+
 ## Usage
 
 A little info;
@@ -27,7 +31,7 @@ Type followings;
     from chessQuest.board import Board
                                       
     board = Board(7, 7)
-    pieces_counts = {'K': 2, 'Q': 2, 'B': 2, 'N': 1}
+    pieces_counts = {'K': 2, 'Q': 2, 'B': 2, 'N': 1, 'R': 0}
     pieces = []
     for piece in PIECES_ORDER:
         pieces.extend([piece] * pieces_counts[piece])
@@ -37,6 +41,8 @@ Type followings;
     board.show_combinations(limit=0)
     # Or to get some of them
     board.show_combinations(limit=10)
+    # To get time that spend
+    board.spend_time
 
 
 Thank you.

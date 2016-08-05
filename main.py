@@ -1,14 +1,15 @@
-from datetime import datetime
-
 from chessQuest import PIECES_ORDER, KNIGHT, KING, QUEEN, ROOK, BISHOP
 from chessQuest.board import Board
 
 
-def take_counts(prompt):
+def take_counts(prompt, grater=False):
     while True:
         data = input(prompt)
         if str(data).isdigit():
-            break
+            if grater and int(data) > 0:
+                break
+            else:
+                break
         print("[!] Could not understand")
     return data
 
@@ -17,8 +18,8 @@ if __name__ == '__main__':
     Please give me board width and height;
     """
 
-    len_x = take_counts("Board width ")
-    len_y = take_counts("Board height ")
+    len_x = take_counts("Board width ", True)
+    len_y = take_counts("Board height ", True)
 
     print """
     Please give me pieces' counts;
@@ -37,7 +38,6 @@ if __name__ == '__main__':
     for piece in PIECES_ORDER:
         pieces.extend([piece] * pieces_counts[piece])
 
-    t1 = datetime.now()
     board.place_them_all(pieces=pieces)
-    print datetime.now() - t1
     board.show_combinations(limit=0)
+    print "Combinations found in '{}'".format(board.spend_time)

@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from chessQuest.utils import cached
 from . import FORBIDDEN, KING, QUEEN, BISHOP, ROOK, KNIGHT, FREE, PIECES
 
@@ -9,6 +11,11 @@ class Board:
         self.board = []
         self.combinations = set([])
         self.reset()
+        self.spend = 0
+
+    @property
+    def spend_time(self):
+        return str(self.spend)
 
     def reset(self):
         """
@@ -92,11 +99,13 @@ class Board:
         Entry point of recursion to find all possible position of given pieces.
         :param pieces: List of given chess pieces.
         """
+        t1 = datetime.now()
         first_piece, rest_pieces = pieces[0], pieces[1:]
         for index in range(len(self.board)):
             self.reset()
             self.board[index] = first_piece
             self.place_them(["{}_{}".format(first_piece, index)], rest_pieces, len(pieces))
+        self.spend = datetime.now() - t1
 
     def place_them(self, combination=[], pieces=[], total_count=0):
         """
