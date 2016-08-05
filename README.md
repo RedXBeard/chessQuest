@@ -3,7 +3,7 @@ Find all unique configurations of a set of normal chess pieces on a chess board 
 
 ## Info
 
-With caching spending time is decreased almost ```40%```
+With caching spending time is decreased almost `40%`
 
 ## Usage
 
@@ -15,9 +15,24 @@ A little info;
     'N' -> Knight
     'R' -> Rook
 
+### As console script
+
+` [ Warning ] ` Be sure you are using last version of `pip` and `setuptools`
+
+Just type the following to install, in source folder, then run;
+
+    $> pip[2.7, 3] install -e .
+    $> # To run; 
+    $> # According to the terminal app, 
+    $> # when the following line typed, 
+    $> # folder can be changed, so you should type again
+    $> chessquest
+
+Then follow the prompts on screen.
+
 ### As terminal script
 
-run the following line
+Run the following line
 
     $> python main.py
     

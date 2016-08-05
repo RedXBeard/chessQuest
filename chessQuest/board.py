@@ -66,7 +66,7 @@ class Board:
                 printed_board += "X "
             else:
                 printed_board += "{} ".format('.')
-        print printed_board
+        print(printed_board)
 
     def free_cells(self):
         """
@@ -92,7 +92,7 @@ class Board:
             for piece, index in combination:
                 self.board[int(index)] = piece
             self.print_board()
-        print "Total combination count: {}".format(len(self.combinations))
+        print("Total combination count: {}".format(len(self.combinations)))
 
     def place_them_all(self, pieces):
         """
