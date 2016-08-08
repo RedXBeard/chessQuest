@@ -3,8 +3,12 @@ Find all unique configurations of a set of normal chess pieces on a chess board 
 
 ## Info
 
-With caching spending time is decreased almost `40%`
+With caching spending time is decreased almost `40%`. Calculation completion time depends on machine capability, tested results for specified test case as following;
 
+|Machine | Specifications | Calculation Time |
+| ------------- | ------------- | ------------- |
+|MacBook Air 10.11.5| 1.4Ghz i5 8GB DDR3| 22 - 25sec.|
+|Linux Mint 17.3| 2.4Ghz i7 12GB DDR3| 12 - 14sec.|
 ## Usage
 
 A little info;
