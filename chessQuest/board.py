@@ -21,7 +21,7 @@ class Board:
         """
         Reset board to initial state
         """
-        self.board = [0] * self.len_x * self.len_y
+        self.board = [FREE] * self.len_x * self.len_y
 
     def sign_indexes(self, indexes=[], cell_type=FORBIDDEN):
         """

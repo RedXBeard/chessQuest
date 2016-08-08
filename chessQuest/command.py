@@ -2,19 +2,20 @@ from chessQuest import KING, QUEEN, ROOK, KNIGHT, BISHOP, PIECES_ORDER
 from chessQuest.board import Board
 
 
-def main():
-    def take_counts(prompt, grater=False):
+def take_counts(prompt, grater=False):
+    data = input(prompt)
+    while True:
+        if str(data).isdigit():
+            if grater and int(data) > 0:
+                break
+            else:
+                break
+        print("[!] Could not understand")
         data = input(prompt)
-        while True:
-            if str(data).isdigit():
-                if grater and int(data) > 0:
-                    break
-                else:
-                    break
-            print("[!] Could not understand")
-            data = input(prompt)
-        return int(data)
+    return int(data)
 
+
+def main():
     print("""
     Please give me board; width and height;
     """)

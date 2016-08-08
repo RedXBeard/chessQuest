@@ -7,7 +7,7 @@ With caching spending time is decreased almost `40%`. Calculation completion tim
 
 |Machine | Specifications | Calculation Time |
 | ------------- | ------------- | ------------- |
-|MacBook Air 10.11.5| 1.4Ghz i5 8GB DDR3| 22 - 25sec.|
+|MacBook Air 10.11.5| 1.4Ghz i5 8GB DDR3| 20 - 25sec.|
 |Linux Mint 17.3| 2.4Ghz i7 12GB DDR3| 12 - 14sec.|
 ## Usage
 
