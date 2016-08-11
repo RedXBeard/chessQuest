@@ -20,4 +20,7 @@ setup(
         'Operating System :: Unix',
         'Programming Language :: Python :: 2.7 :: 3',
     ],
+    install_requires=[
+        'coverage'
+    ]
 )

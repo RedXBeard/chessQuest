@@ -41,5 +41,5 @@ def main():
         pieces.extend([piece] * pieces_counts[piece])
 
     board.place_them_all(pieces=pieces)
-    board.show_combinations(limit=0)
+    board.show_combinations(limit=10)
     print("Combinations found in '{}'".format(board.spend_time))

@@ -1,0 +1,11 @@
+# .coveragerc to control coverage.py
+[run]
+source = .
+omit = chessQuest/command.py,chessQuest/tests/*,chessQuest/__init__.py,main.py,setup.py
+
+[report]
+# Regexes for lines to exclude from consideration
+exclude_lines = def spend_time*
+                def print_board*
+                def show_combinations*
+ignore_errors = True
